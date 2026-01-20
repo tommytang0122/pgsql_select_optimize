@@ -46,6 +46,7 @@ pgsql_select_optimize/
 ├── virtual_list_implement.md    # Virtual list details
 ├── gzip_implement.md            # GZip compression details
 ├── parallel_requests_implement.md # Parallel requests details
+├── SECURITY.md                  # Security guide
 ├── time_optimization.md         # Benchmark results
 └── README.md                    # This file
 ```

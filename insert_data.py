@@ -9,13 +9,19 @@ from psycopg2.extras import execute_values
 import random
 import time
 
+import os
+from dotenv import load_dotenv
+
+# 載入環境變數
+load_dotenv()
+
 # 資料庫連線設定
 DB_CONFIG = {
-    'host': 'localhost',
-    'port': 5433,
-    'database': 'testdb',
-    'user': 'testuser',
-    'password': 'testpass'
+    'host': os.getenv("DB_HOST", "localhost"),
+    'port': int(os.getenv("DB_PORT", 5433)),
+    'database': os.getenv("DB_NAME", "testdb"),
+    'user': os.getenv("DB_USER", "testuser"),
+    'password': os.getenv("DB_PASSWORD", "testpass")
 }
 
 # 設定
