@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PostgreSQL 數據瀏覽器</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🗄️ PostgreSQL 數據瀏覽器</h1>
+            <p class="subtitle">data_100k 資料表 - 10萬筆數據</p>
+        </header>
+
+        <div class="controls">
+            <button id="loadBtn" class="btn-primary">
+                <span class="btn-icon">📊</span>
+                載入數據
+            </button>
+            <div class="stats" id="stats">
+                <span id="totalCount">-</span> 筆數據
+            </div>
+        </div>
+
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>載入中... <span id="loadProgress">0</span>%</p>
+        </div>
+
+        <div class="table-container" id="tableContainer">
+            <table id="dataTable">
+                <thead>
+                    <tr id="headerRow">
+                        <th class="sticky-col">ID</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                </tbody>
+            </table>
+        </div>
+
+        <div class="footer" id="footer">
+            <span id="queryTime">-</span>
+        </div>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
