@@ -6,6 +6,7 @@ FastAPI 後端 - 讀取 data_100k 資料表
 
 from fastapi import FastAPI, Query, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.gzip import GZipMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 import psycopg2
@@ -14,6 +15,12 @@ from psycopg2 import pool
 from typing import Optional
 from contextlib import contextmanager
 import time
+
+# ============================================
+# GZip 壓縮設定
+# ============================================
+USE_GZIP = False             # 開關：True=啟用 GZip, False=停用 (本地測試建議關閉)
+GZIP_MIN_SIZE = 500          # 最小壓縮大小 (bytes)
 
 app = FastAPI(
     title="PostgreSQL Data API",
@@ -29,6 +36,13 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# 啟用 GZip 壓縮 (根據開關)
+if USE_GZIP:
+    app.add_middleware(GZipMiddleware, minimum_size=GZIP_MIN_SIZE)
+    print(f"✅ GZip 壓縮已啟用 (minimum_size={GZIP_MIN_SIZE})")
+else:
+    print("⚠️ GZip 壓縮已停用")
 
 # 資料庫連線設定
 DB_CONFIG = {
